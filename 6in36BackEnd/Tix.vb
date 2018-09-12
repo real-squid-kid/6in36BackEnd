@@ -1,6 +1,7 @@
 ﻿Public Class Tix
 
     Public Numbers(5) As Integer
+    Public Hits As Integer
 
     Public Sub PrepareTix()
         Dim dup As Boolean = True
