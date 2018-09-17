@@ -2,6 +2,8 @@
 
     Dim AllTix As New List(Of Tix)
     Dim result As Integer()
+    Dim TixImage As New Bitmap(300, 300)
+    Dim TixImageMaker As Graphics = Graphics.FromImage(TixImage)
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         '       Dim i As New Tix
         '       i.PrepareTix()
@@ -48,8 +50,6 @@
         TextBox1.AppendText("0 hits - " & result(0) & vbCrLf)
     End Sub
 
-
-
     Private Sub AddTix(e As Integer)
         For i = 1 To e
             AllTix.Add(New Tix)
@@ -75,6 +75,14 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False
+        Dim center As Point
+        center.X = 150
+        center.Y = 150
+        Dim cellsize As Size
+        cellsize.Height = 40
+        cellsize.Width = 40
+        Grafika.DrawGrid(TixImageMaker, center, 6, 6, cellsize)
+        PictureBox1.Image = TixImage
     End Sub
 
     Private Sub AddTixBtn_Click(sender As Object, e As EventArgs) Handles AddTixBtn.Click

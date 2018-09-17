@@ -31,15 +31,19 @@
         Else
             If GlobalTimer / 2 = Int(GlobalTimer / 2) Then
                 PrgBackground.BackColor = Color.Red
-                Dim trd As New Threading.Thread(AddressOf FastBeep)
-                trd.IsBackground = True
-                trd.Start()
+
             Else
                 PrgBackground.BackColor = Color.LightCyan
             End If
         End If
         If GlobalTimer > 25 And ScreenHits(6) > 0 Then
-            IfWon = True
+
+            If IfWon = False Then
+                IfWon = True
+                Dim trd As New Threading.Thread(AddressOf FastBeep)
+                trd.IsBackground = True
+                trd.Start()
+            End If
         End If
         If GlobalTimer = 50 Then
             ProgressBar1.Value = 0
@@ -50,10 +54,10 @@
     End Sub
 
     Private Sub ShortBeep()
-        Console.Beep(1250, 100)
+        Console.Beep(1250, 200)
     End Sub
 
     Private Sub FastBeep()
-        Console.Beep(2000, 100)
+        Console.Beep(2500, 2500)
     End Sub
 End Class
